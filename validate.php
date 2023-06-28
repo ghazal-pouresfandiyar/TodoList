@@ -13,24 +13,21 @@ if (isset($_POST['login'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = validate($_POST["username"]);
         $password = validate($_POST["password"]);
-        $sql = "SELECT * FROM users";
-        $results = mysqli_query($conn, $sql);
-        if(!$results){
-            die(mysqli_error($con));
-        }
-        if (mysqli_num_rows($results)) {
-            while ($row = mysqli_fetch_assoc($results)) {
-                if (($row['username'] == $username) && ($row['password'] == $password)) {
-                    header("location: home.php");
-                } else {
-                    echo "<SCRIPT>
+        $sql = "select *from users where username = '$username' and password = '$password'";  
+        $result = mysqli_query($con, $sql);  
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+        $count = mysqli_num_rows($result);  
+          
+        if($count == 1){  
+            header("location: home.php"); 
+        }  
+        else{  
+            echo "<SCRIPT>
                     alert('Wrong information!')
                     window.location.replace('http://localhost/Todolist/login.php');
                     </SCRIPT>";
                     die();
-                }
-            }
-        }
+        }     
     }
 }
 
