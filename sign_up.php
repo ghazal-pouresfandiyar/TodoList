@@ -13,19 +13,19 @@
 <?php
     session_start();
     include_once('connection.php');
-    $conn = mysqli_connect('localhost', 'root', '', 'my_db');
+    $conn = mysqli_connect('localhost', 'root', '', 'todo_db');
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $email = validate($_POST['email']);
+        $username = validate($_POST['username']);
         $password = validate($_POST['password']);
-        if (empty($email)|| empty($password)) {
+        if (empty($username)|| empty($password)) {
             echo "Please fill out all required fields.";
         }else {
-                $sql = "INSERT INTO `users`(`email`, `password`) VALUES ('$email', '$password')";
+                $sql = "INSERT INTO `users`(`username`, `password`) VALUES ('$username', '$password')";
                 $x = mysqli_query($conn, $sql);
                 if($x){
                     echo "<SCRIPT>
                     alert('New user saved!')
-                    window.location.replace('http://localhost/my-php-hw/index.php');
+                    window.location.replace('http://localhost/Todolist/login.php');
                     </SCRIPT>";
                 }
         }
@@ -44,7 +44,7 @@
     
             <div class="textbox">
                 <i class="fa fa-user" aria-hidden="true"></i>
-                <input type="email" placeholder="Email" name="email" value="">
+                <input placeholder="Username" name="username" value="">
                 </div>
     
                 <div class="textbox">
@@ -55,7 +55,7 @@
     
                 <input class="button" type="submit" name="signup" value="Sign Up">
                 <a>Already have an account?</a>
-                <a href="index.php">log in</a>
+                <a href="login.php">log in</a>
             </div>
         </div>
     </form>
