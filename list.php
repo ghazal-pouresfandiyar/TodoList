@@ -46,10 +46,14 @@
       $con = mysqli_connect('localhost', 'root', '', 'todo_db');
       $results = mysqli_query($conn, "SELECT * FROM tasks");
     ?>
+
     <table style="margin-top: 100px;">
       <thead>
         <tr>
           <th style="font-size: 25px; text-align: left;" colspan="3">My tasks</th>
+        </tr>
+        <tr>
+          <th><a href="create_task.php" class="edit_btn">Add</a></th>
         </tr>
       </thead>
 
@@ -58,7 +62,9 @@
         <th>Task name</th>
         <th>Deadline</th>
         <th>Priority</th>
-        <!-- <th colspan="2">Options</th> -->
+        <th>Status</th>
+        <th>Info</th>
+        <th colspan="2">Options</th>
       </tr>
       
       <?php 
@@ -74,10 +80,12 @@
               <td><?php echo $row['task_name']; ?></td>
               <td><?php echo $row['deadline']; ?></td>
               <td><?php echo $row['priority']; ?></td>
-              <!-- <td>
-                <a href="create_book.php?edit=<?php echo $row['id']; ?>&action=2" class="edit_btn">Edit</a>
-                <a href="change_db.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
-              </td> -->
+              <td><?php echo $row['task_status']; ?></td>
+              <td><?php echo $row['info']; ?></td>
+              <td>
+                <a href="create_book.php?update=true?edit=<?php echo $row['id']; ?>&action=2" class="edit_btn">Edit</a>
+                <a href="handle_tasks.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
+              </td>
             </tr>
             <?php $i++;}
         }
