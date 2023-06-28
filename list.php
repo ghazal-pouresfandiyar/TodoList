@@ -50,9 +50,7 @@
     <table style="margin-top: 100px;">
       <thead>
         <tr>
-          <th style="font-size: 25px; text-align: left;" colspan="3">My tasks</th>
-        </tr>
-        <tr>
+          <th style="font-size: 25px; text-align: left;" colspan="6">My tasks</th>
           <th><a href="create_task.php" class="edit_btn">Add</a></th>
         </tr>
       </thead>

@@ -54,7 +54,6 @@
 			<select name="task_status" id="task_status" style="border-radius: 5px;">
             <!-- <option value="" selected disabled> -->
             <option value="Undone">Undone</option>
-            <option value="Doing">Doing</option>
             <option value="Done">Done</option>
             </select>
 		</div>
