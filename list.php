@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-do</title>
 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./bootstrap-5.1.3-dist/css/bootstrap.css" />
     <link rel="stylesheet" href="style.css" />
 
@@ -50,8 +52,8 @@
     <table style="margin-top: 100px;">
       <thead>
         <tr>
-          <th style="font-size: 25px; text-align: left;" colspan="6">My tasks</th>
-          <th><a href="create_task.php" class="edit_btn">Add</a></th>
+          <th style="font-size: 25px; text-align: left;" colspan="5">My tasks</th>
+          <th><a href="create_task.php" class="add_btn">+Add new task</a></th>
         </tr>
       </thead>
 
@@ -78,11 +80,21 @@
               <td><?php echo $row['task_name']; ?></td>
               <td><?php echo $row['deadline']; ?></td>
               <td><?php echo $row['priority']; ?></td>
-              <td><?php echo $row['task_status']; ?></td>
+              <td>
+                <?php
+                  // echo $row['task_status']; 
+                  if ($row['task_status'] == "Done"){ ?>
+                    <input type="checkbox" id="task_status" name="task_status" checked>
+                  <?php }
+                  else{ ?>
+                    <input type="checkbox" id="task_status" name="task_status">
+                  <?php }
+                 ?>
+              </td>
               <td><?php echo $row['info']; ?></td>
               <td>
-                <a href="edit_task.php?edit=<?php echo $row['id']; ?>" class="edit_btn">Edit</a>
-                <a href="handle_tasks.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
+                <a href="edit_task.php?edit=<?php echo $row['id']; ?>" class="edit_btn fa fa-pencil"></a>
+                <a href="handle_tasks.php?del=<?php echo $row['id']; ?>" class="del_btn fa fa-trash" ></a>
               </td>
             </tr>
             <?php $i++;}
