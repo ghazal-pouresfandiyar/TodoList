@@ -17,8 +17,8 @@
         $_SESSION['message'] = "Task was successfully deleted!";
         header('location: list.php');
     }
+    
     // add task
-
 	if (isset($_POST['save'])) {
 		$task_name = $_POST['task_name'];
 		$deadline = $_POST['deadline'];
@@ -28,13 +28,13 @@
 		mysqli_query($db, "INSERT INTO tasks (task_name, deadline, priority, task_status, info) 
                             VALUES ('$task_name', '$deadline', '$priority', '$task_status', '$info')"); 
 		$_SESSION['message'] = "New Task saved!"; 
-		header('location: list.php?action=2');
+		header('location: list.php');
 	}
-
-	if (isset($_GET['action'])) {
-		$action = $_GET['action'];
-	}
-
+    echo "<SCRIPT>
+        alert('Wrong information!')
+        window.location.replace('http://localhost/Todolist/login.php');
+        </SCRIPT>";
+    // edit task
     if (isset($_POST['update'])) {
         $id = $_POST['id'];
 		$task_name = $_POST['task_name'];
@@ -49,7 +49,7 @@
                                                task_status = '$task_status',
                                                info='$info'      
                                                WHERE id=$id");  
-        $_SESSION['message'] = "The  book is up to date!"; 
+        $_SESSION['message'] = "The task is up to date!";
         header('location: list.php');  
     }
 

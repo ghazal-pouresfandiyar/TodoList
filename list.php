@@ -83,7 +83,7 @@
               <td><?php echo $row['task_status']; ?></td>
               <td><?php echo $row['info']; ?></td>
               <td>
-                <a href="create_book.php?update=true?edit=<?php echo $row['id']; ?>&action=2" class="edit_btn">Edit</a>
+                <a href="edit_task.php?edit=<?php echo $row['id']; ?>" class="edit_btn">Edit</a>
                 <a href="handle_tasks.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
               </td>
             </tr>

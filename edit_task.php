@@ -3,19 +3,20 @@
     session_start();
 	$conn = mysqli_connect('localhost', 'root', '', 'todo_db');
 
-    $id = 0;
+    $id=0;
 	$task_name = "";
     $deadline = "";
 	$priority = "";
 	$task_status = "";
 	$info = "";
-	$update = false;
+    if(isset($_GET['edit'])){
+	    $id = $_GET['edit'];
+    }
 ?>
 <html>
 <head>
     <link rel="stylesheet" href="style.css">
-    <title>Create Task</title>
-    
+        <title>Edit Task</title>
     <!-- <script>
          window.onload = function () {
             const $select = document.querySelector('#genre');
@@ -25,7 +26,7 @@
 </head>
 
 <body>
-    <h2 style="text-align: center; margin-top: 100px;">Create Task</h2>
+    <h2 style="text-align: center; margin-top: 100px;">Edit Task</h2>
 
     <form method="post" action="handle_tasks.php" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -63,7 +64,7 @@
 			<textarea type="text" style="width:93%; height: 150px; border-radius: 5px;" name="info" ><?php echo $info; ?></textarea>
 		</div>
 		<div class="input-group">
-	        <button class="btn" type="submit" name="save" >Create</button>	
+	        <button class="btn" type="submit" name="update">Update</button>
         </div>
 	</form>
 </body>
