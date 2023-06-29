@@ -14,7 +14,7 @@
     
     <?php
       include('navbar.php');
-      header("refresh: 1;");
+      // header("refresh: 1;");
     ?>
   </head>
   <body>
@@ -22,6 +22,7 @@
       include_once('connection.php');
       $con = mysqli_connect('localhost', 'root', '', 'todo_db');
       $results = mysqli_query($conn, "SELECT * FROM tasks");
+      $subjects = mysqli_query($conn, "SELECT * FROM subjects");
       date_default_timezone_set("Asia/Tehran");
 
       $username = $_GET['user'];
@@ -29,8 +30,24 @@
     ?>
     <div style="margin-top: 80px;">
       <p><?php echo date('Y-m-d H:i:s') ?></p>
-      <a href="done_list.php?user=<?php echo $username; ?>" class="add_btn">Done list</a>
+      <a href="filter.php?user=<?php echo $username; ?>&done=1" class="add_btn">Done list</a>
+      <br>
+      <?php
+        if(!$subjects){
+          die(mysqli_error($con));
+        }
+        if(mysqli_num_rows($subjects)){
+          while ($row = mysqli_fetch_array($subjects)) { ?>
+            <a href="filter.php?user=<?php echo $username; ?>&subj=<?php echo $row['name'] ?>" class="add_btn">filter <?php echo $row['name'] ?></a>
+            <br>
+          <?php
+          }
+        }
+      ?>
+      
+
     </div>
+
     <div class="flex-container">
       <!-- table -->
       <div style="width: 70%; padding:0; margin:0;">
