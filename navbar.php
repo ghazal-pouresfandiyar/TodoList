@@ -39,6 +39,9 @@
         <li class="nav-item">
           <a class="nav-link" href="list.php" style="font-size:16px">My list</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="done_list.php" style="font-size:16px">Done list</a>
+        </li>
 
       </ul>
     </div>

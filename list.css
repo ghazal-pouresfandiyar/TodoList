@@ -1,0 +1,23 @@
+body {
+  background-color: wheat;
+}
+
+.task-container {
+  margin-top: 2.5em;
+  margin-left: 25%;
+}
+
+#inputTask {
+  margin-top: 0.1em;
+  border: black dashed 0.1em;
+}
+
+.add-btn {
+  margin-top: 0.1em;
+}
+
+table {
+  width: 50% !important;
+  margin-top: 2em;
+  margin-left: 25%;
+}

@@ -29,8 +29,7 @@
     <table style="margin-top: 100px;">
       <thead>
         <tr>
-          <th style="font-size: 25px; text-align: left;" colspan="5">My tasks</th>
-          <th><a href="create_task.php" class="add_btn">+Add new task</a></th>
+          <th style="font-size: 25px; text-align: left;" colspan="5">Done tasks</th>
         </tr>
       </thead>
 
@@ -41,7 +40,6 @@
         <th>Priority</th>
         <th>Status</th>
         <th>Info</th>
-        <th colspan="2">Options</th>
       </tr>
       
       <?php 
@@ -51,29 +49,21 @@
           die(mysqli_error($con));
         }
         if(mysqli_num_rows($results)){
-          while ($row = mysqli_fetch_array($results)) { ?>
+          while ($row = mysqli_fetch_array($results)) { 
+            if ($row['task_status'] == "Done"){ ?>
             <tr>
               <td><?php echo $i; ?></td>
               <td><?php echo $row['task_name']; ?></td>
               <td><?php echo $row['deadline']; ?></td>
               <td><?php echo $row['priority']; ?></td>
               <td>
-                <?php
-                  if ($row['task_status'] == "Done"){ ?>
-                    <a href="handle_tasks.php?undone=<?php echo $row['id']; ?>" class="edit_btn fa fa-check"></a>
-                  <?php }
-                  else{ ?>
-                    <a href="handle_tasks.php?done=<?php echo $row['id']; ?>" class="del_btn fa fa-times"></a>
-                  <?php }
-                 ?>
+              <p class="edit_btn fa fa-check"></p>
               </td>
               <td><?php echo $row['info']; ?></td>
-              <td>
-                <a href="edit_task.php?edit=<?php echo $row['id']; ?>" class="edit_btn fa fa-pencil"></a>
-                <a href="handle_tasks.php?del=<?php echo $row['id']; ?>" class="del_btn fa fa-trash" ></a>
-              </td>
             </tr>
-            <?php $i++;}
+            <?php $i++;
+            }
+          }
         }
       ?>
     </table>		
