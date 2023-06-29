@@ -14,7 +14,6 @@
   </style>
   
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-  <!-- Sidebar -->
   <script type="text/javascript">
     $(document).ready(function(){
       $('i a').click(function(){
@@ -32,15 +31,6 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" href="login.php" style="font-size:16px">Logout</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="home.php" style="font-size:16px">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="list.php" style="font-size:16px">My list</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="done_list.php" style="font-size:16px">Done list</a>
         </li>
 
       </ul>

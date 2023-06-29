@@ -4,7 +4,9 @@
 	$conn = mysqli_connect('localhost', 'root', '', 'todo_db');
 
     $id = 0;
+    $username= $_GET['user'];
 	$task_name = "";
+    $subject = "";
     $deadline = "";
     $reminder = "";
 	$priority = "";
@@ -21,7 +23,7 @@
 <body>
     <h2 style="text-align: center; margin-top: 100px;">Create Task</h2>
 
-    <form method="post" action="handle_tasks.php" enctype="multipart/form-data">
+    <form method="post" action="handle_tasks.php?user=<?php echo $username ?>" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $id; ?>">
 		<div class="input-group">
 			<label style="margin-right: 50px;">Task name</label>

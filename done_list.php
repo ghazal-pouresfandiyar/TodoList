@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="list.css" />
 
-
-    
     <?php
       include('navbar.php');
     ?>
@@ -24,6 +22,7 @@
       include_once('connection.php');
       $con = mysqli_connect('localhost', 'root', '', 'todo_db');
       $results = mysqli_query($conn, "SELECT * FROM tasks");
+      $username = $_GET['user'];
     ?>
 
     <table style="margin-top: 100px;">
@@ -50,7 +49,7 @@
         }
         if(mysqli_num_rows($results)){
           while ($row = mysqli_fetch_array($results)) { 
-            if ($row['task_status'] == "Done"){ ?>
+            if ($row['username'] == $username and $row['task_status'] == "Done"){ ?>
             <tr>
               <td><?php echo $i; ?></td>
               <td><?php echo $row['task_name']; ?></td>

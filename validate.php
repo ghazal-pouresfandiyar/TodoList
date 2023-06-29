@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
         $count = mysqli_num_rows($result);  
           
         if($count == 1){  
-            header("location: home.php"); 
+            header("location: list.php?user=".$username); 
         }  
         else{  
             echo "<SCRIPT>

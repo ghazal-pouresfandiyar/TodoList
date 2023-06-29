@@ -3,6 +3,7 @@
 	$db = mysqli_connect('localhost', 'root', '', 'todo_db');
 
     $id = 0;
+    $username = $_GET['user'];
 	$task_name = "";
     $deadline = "";
     $reminder = "";
@@ -15,7 +16,7 @@
     if (isset($_GET['del'])) {
         $id = $_GET['del'];
         mysqli_query($db, "DELETE FROM tasks WHERE id=$id");
-        header('location: list.php');
+        header('location: list.php?user='.$username);
     }
     
     // add task
@@ -27,9 +28,9 @@
         $task_status = $_POST['task_status'];
 		$info = $_POST['info'];
 
-		mysqli_query($db, "INSERT INTO tasks (task_name, deadline,reminder, priority, task_status, info) 
-                            VALUES ('$task_name', '$deadline', '$reminder', '$priority', '$task_status', '$info')"); 
-		header('location: list.php');
+		mysqli_query($db, "INSERT INTO tasks (username, task_name, deadline,reminder, priority, task_status, info) 
+                            VALUES ('$username', '$task_name', '$deadline', '$reminder', '$priority', '$task_status', '$info')"); 
+		header('location: list.php?user='.$username);
 	}
 
     // edit task
@@ -47,20 +48,20 @@
                                                priority='$priority',
                                                info='$info'      
                                                WHERE id=$id");  
-        header('location: list.php');  
+        header('location: list.php?user='.$username); 
     }
 
     // undone task
     if(isset($_GET['undone'])){
 	    $id = $_GET['undone'];
         mysqli_query($db, "UPDATE tasks SET task_status = 'Undone' WHERE id=$id");  
-        header('location: list.php');  
+        header('location: list.php?user='.$username); 
     }
     // done task
     if(isset($_GET['done'])){
 	    $id = $_GET['done'];
         mysqli_query($db, "UPDATE tasks SET task_status = 'Done' WHERE id=$id");  
-        header('location: list.php');  
+        header('location: list.php?user='.$username);
     }
 
 ?>

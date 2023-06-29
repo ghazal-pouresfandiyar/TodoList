@@ -7,6 +7,8 @@
 	    $id = $_GET['edit'];
     }
 
+    $username = $_GET['user'];
+
     $results = mysqli_query($conn, "SELECT * FROM tasks WHERE id=$id");
     if(!$results){
         die(mysqli_error($con));
@@ -34,7 +36,7 @@
 <body>
     <h2 style="text-align: center; margin-top: 100px;">Edit Task</h2>
 
-    <form method="post" action="handle_tasks.php" enctype="multipart/form-data">
+    <form method="post" action="handle_tasks.php?user=<?php echo $username ?>" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $id; ?>">
 		<div class="input-group">
 			<label style="margin-right: 50px;">Task name</label>
