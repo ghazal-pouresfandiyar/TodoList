@@ -45,7 +45,6 @@
       </tr>
       
       <?php 
-        print_r($results);
         $i = 1;
         if(!$results){
           die(mysqli_error($con));

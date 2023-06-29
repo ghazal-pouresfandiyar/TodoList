@@ -6,6 +6,7 @@
     $id = 0;
 	$task_name = "";
     $deadline = "";
+    $reminder = "";
 	$priority = "";
 	$task_status = "";
 	$info = "";
@@ -35,7 +36,7 @@
 			<input type="text" name="task_name" value="<?php echo $task_name; ?>" required>
 		</div>
         <div class="input-group">
-			<label>deadline</label>
+			<label>Deadline</label>
             <br>
 			<input type="datetime-local" id="deadline" name="deadline">
 		</div>

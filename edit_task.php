@@ -3,27 +3,32 @@
     session_start();
 	$conn = mysqli_connect('localhost', 'root', '', 'todo_db');
 
-    $id=0;
-	$task_name = "";
-    $deadline = "";
-	$priority = "";
-	$task_status = "";
-	$info = "";
     if(isset($_GET['edit'])){
 	    $id = $_GET['edit'];
     }
+
+    $results = mysqli_query($conn, "SELECT * FROM tasks WHERE id=$id");
+    if(!$results){
+        die(mysqli_error($con));
+    }
+    if(mysqli_num_rows($results)){
+        while ($row = mysqli_fetch_array($results)) {?>
+            <?php
+            $task_name = $row['task_name'];
+            $deadline = $row['deadline'];
+            $reminder = $row['reminder'];
+            $priority = $row['priority'];
+            $task_status = $row['task_status'];
+            $info = $row['info'];
+        }
+    }
+
 
 ?>
 <html>
 <head>
     <link rel="stylesheet" href="style.css">
         <title>Edit Task</title>
-    <!-- <script>
-         window.onload = function () {
-            const $select = document.querySelector('#genre');
-            $select.value = "<echo $genre; ?>";
-         }
-    </script> -->
 </head>
 
 <body>
@@ -37,25 +42,35 @@
 			<input type="text" name="task_name" value="<?php echo $task_name; ?>" required>
 		</div>
         <div class="input-group">
-			<label>deadline</label>
+			<label>Deadline</label>
             <br>
-			<input type="datetime-local" id="deadline" name="deadline">
+			<input type="datetime-local" id="deadline" name="deadline" value="<?php echo $deadline; ?>">
+		</div>
+        <div class="input-group">
+			<label>Reminder</label>
+            <br>
+			<input type="datetime-local" id="reminder" name="reminder" max="<?php echo $deadline; ?>">
 		</div>
 		<div class="input-group">
 			<label style="margin-right:50px">Priority</label>
             <select name="priority" id="priority" style="border-radius: 5px;">
-            <!-- <option value="" selected disabled> -->
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-            </select>
-		</div>
-        <div class="input-group">
-			<label style="margin-right: 50px;">Task Status</label>
-			<select name="task_status" id="task_status" style="border-radius: 5px;">
-            <!-- <option value="" selected disabled> -->
-            <option value="Undone">Undone</option>
-            <option value="Done">Done</option>
+                <?php if ($priority == "Low"){?>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                <?php }
+                elseif ($priority == "High"){?>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                <?php }
+                elseif ($priority == "Medium"){?>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                    <option value="Low">Low</option>
+                <?php } ?>
+
+                    
             </select>
 		</div>
         <div class="input-group">
