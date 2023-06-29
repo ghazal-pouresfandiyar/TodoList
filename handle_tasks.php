@@ -22,14 +22,15 @@
     // add task
 	if (isset($_POST['save'])) {
 		$task_name = $_POST['task_name'];
+        $task_subject = $_POST['task_subject'];
 		$deadline = $_POST['deadline'];
         $reminder = $_POST['reminder'];
         $priority = $_POST['priority'];
         $task_status = $_POST['task_status'];
 		$info = $_POST['info'];
 
-		mysqli_query($db, "INSERT INTO tasks (username, task_name, deadline,reminder, priority, task_status, info) 
-                            VALUES ('$username', '$task_name', '$deadline', '$reminder', '$priority', '$task_status', '$info')"); 
+		mysqli_query($db, "INSERT INTO tasks (username, task_name, task_subject, deadline,reminder, priority, task_status, info) 
+                            VALUES ('$username', '$task_name', '$task_subject', '$deadline', '$reminder', '$priority', '$task_status', '$info')"); 
 		header('location: list.php?user='.$username);
 	}
 
@@ -37,17 +38,19 @@
     if (isset($_POST['update'])) {
         $id = $_POST['id'];
 		$task_name = $_POST['task_name'];
+        $task_subject = $_POST['task_subject'];
 		$deadline = $_POST['deadline'];
         $reminder = $_POST['reminder'];
         $priority = $_POST['priority'];
 		$info = $_POST['info'];
 
         mysqli_query($db, "UPDATE tasks SET task_name='$task_name',
-                                               deadline='$deadline',
-                                               reminder='$reminder',
-                                               priority='$priority',
-                                               info='$info'      
-                                               WHERE id=$id");  
+                                            task_subject = '$task_subject',
+                                            deadline='$deadline',
+                                            reminder='$reminder',
+                                            priority='$priority',
+                                            info='$info'      
+                                            WHERE id=$id");  
         header('location: list.php?user='.$username); 
     }
 

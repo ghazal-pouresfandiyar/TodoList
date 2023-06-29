@@ -53,6 +53,24 @@
             </select>
 		</div>
         <div class="input-group">
+			<label style="margin-right: 50px;">Subject</label>
+			<select name="task_subject" id="task_subject" style="border-radius: 5px;">
+            <!-- <option value="" selected disabled> -->
+            <?php
+            $results = mysqli_query($conn, "SELECT * FROM subjects");
+            if(!$results){
+                die(mysqli_error($con));
+            }
+            if(mysqli_num_rows($results)){
+                while ($row = mysqli_fetch_array($results)) { ?>
+                    <option><?php echo $row['name'] ?></option>
+                    <?php
+                }
+            }
+                ?>
+            </select>
+		</div>
+        <div class="input-group">
 			<label>More information about task</label>
             <br>
 			<textarea type="text" style="width:93%; height: 150px; border-radius: 5px;" name="info" ><?php echo $info; ?></textarea>

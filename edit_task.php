@@ -17,6 +17,7 @@
         while ($row = mysqli_fetch_array($results)) {?>
             <?php
             $task_name = $row['task_name'];
+            $task_subject = $row['task_subject'];
             $deadline = $row['deadline'];
             $reminder = $row['reminder'];
             $priority = $row['priority'];
@@ -42,6 +43,26 @@
 			<label style="margin-right: 50px;">Task name</label>
             <br/>
 			<input type="text" name="task_name" value="<?php echo $task_name; ?>" required>
+		</div>
+        <div class="input-group">
+			<label style="margin-right: 50px;">Subject</label>
+			<select name="task_subject" id="task_subject" style="border-radius: 5px;">
+            <option><?php echo $task_subject ?></option>
+            <?php
+            $results = mysqli_query($conn, "SELECT * FROM subjects");
+            if(!$results){
+                die(mysqli_error($con));
+            }
+            if(mysqli_num_rows($results)){
+                while ($row = mysqli_fetch_array($results)) { 
+                    if ($row['name'] != $task_subject){ ?>
+                    <option><?php echo $row['name'] ?></option>
+                    <?php
+                    }
+                }
+            }
+                ?>
+            </select>
 		</div>
         <div class="input-group">
 			<label>Deadline</label>

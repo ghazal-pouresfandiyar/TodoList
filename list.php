@@ -47,6 +47,7 @@
           <tr>
             <th>#</th>
             <th>Task name</th>
+            <th>Subject</th>
             <th>Deadline</th>
             <th>Reminder</th>
             <th>Priority</th>
@@ -67,6 +68,7 @@
                   <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $row['task_name']; ?></td>
+                    <td><?php echo $row['task_subject']; ?></td>
                     <td><?php echo $row['deadline']; ?></td>
                     <td><?php echo $row['reminder']; ?></td>
                     <td><?php echo $row['priority']; ?></td>
