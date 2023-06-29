@@ -43,11 +43,18 @@
         $reminder = $_POST['reminder'];
         $priority = $_POST['priority'];
 		$info = $_POST['info'];
+        $result = mysqli_query($db, "SELECT * FROM tasks WHERE id=$id AND reminder=$reminder");
+        if($result){ //it means that the reminder of task hasn't been updated
+            $alert = "Deactive";
+        }else{
+            $alert = "";
+        }
 
         mysqli_query($db, "UPDATE tasks SET task_name='$task_name',
                                             task_subject = '$task_subject',
                                             deadline='$deadline',
                                             reminder='$reminder',
+                                            alert = '$alert',
                                             priority='$priority',
                                             info='$info'      
                                             WHERE id=$id");  
@@ -60,10 +67,18 @@
         mysqli_query($db, "UPDATE tasks SET task_status = 'Undone' WHERE id=$id");  
         header('location: list.php?user='.$username); 
     }
+
     // done task
     if(isset($_GET['done'])){
 	    $id = $_GET['done'];
-        mysqli_query($db, "UPDATE tasks SET task_status = 'Done' WHERE id=$id");  
+        mysqli_query($db, "UPDATE tasks SET task_status = 'Done', alert = 'Deactive' WHERE id=$id");  
+        header('location: list.php?user='.$username);
+    }
+
+    // deactive alert
+    if(isset($_GET['del_note'])){
+        $id = $_GET['del_note'];
+        mysqli_query($db, "UPDATE tasks SET alert = 'Deactive' WHERE id=$id");
         header('location: list.php?user='.$username);
     }
 

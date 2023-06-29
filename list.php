@@ -11,12 +11,10 @@
     <link rel="stylesheet" href="./bootstrap-5.1.3-dist/css/bootstrap.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="list.css" />
-
-
     
     <?php
       include('navbar.php');
-      // header("refresh: 1;");
+      header("refresh: 1;");
     ?>
   </head>
   <body>
@@ -108,25 +106,30 @@
           }
           if(mysqli_num_rows($results)){
             while ($row = mysqli_fetch_array($results)) {
-              $date = date("Y-m-d H:i:s");
-              if($row['reminder'] <= $date and $row['task_status'] == "Undone"){
-                $name = $row['task_name'];
-                $task_deadline = $row['deadline'];
-                mysqli_query($con, "INSERT INTO alerts (task_name, task_deadline) VALUES ('$name', '$task_deadline')");
+              if($row['username'] == $username){
+                $id = $row['id'];
+                $date = date("Y-m-d H:i:s");
+                if($row['reminder'] <= $date and $row['task_status'] == "Undone" and $row['alert'] != "Deactive"){
+                  mysqli_query($con, "UPDATE tasks SET alert = 'Active' WHERE id=$id");  
+                }
               }
             }
           }
 
-          $alerts = mysqli_query($con, "SELECT * FROM alerts");
+          $alerts = mysqli_query($con, "SELECT * FROM tasks WHERE alert=\"Active\"");
           if(!$alerts){
             die(mysqli_error($con));
           }
           if(mysqli_num_rows($alerts)){
-            while ($row = mysqli_fetch_array($alerts)) {
-              $message = "<div class=\"alert\">"
-                                  ."<span class=\"closebtn\">&times;</span>"
-                                  ."Don't forget to do ".$row['task_name']."!<br> The deadline is ".$row['task_deadline']."</div>";
-              echo $message;
+            while ($row = mysqli_fetch_array($alerts)) { ?>
+              <div class="alert">
+                <!-- <span class=\"closebtn\">&times;</span>" -->
+                <a href="handle_tasks.php?user=<?php echo $username?>&del_note=<?php echo $row['id']?>" class="closebtn fa fa-times"></a>
+                Don't forget to do <?php echo $row['task_name']?>!
+                <br>
+                The deadline is <?php echo $row['deadline']?>
+              </div>
+              <?php
             }
           }
           

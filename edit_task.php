@@ -72,7 +72,7 @@
         <div class="input-group">
 			<label>Reminder</label>
             <br>
-			<input type="datetime-local" id="reminder" name="reminder" max="<?php echo $deadline; ?>">
+			<input type="datetime-local" id="reminder" name="reminder" value="<?php echo $reminder;?>" max="<?php echo $deadline; ?>">
 		</div>
 		<div class="input-group">
 			<label style="margin-right:50px">Priority</label>
