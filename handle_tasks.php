@@ -30,10 +30,7 @@
 		$_SESSION['message'] = "New Task saved!"; 
 		header('location: list.php');
 	}
-    echo "<SCRIPT>
-        alert('Wrong information!')
-        window.location.replace('http://localhost/Todolist/login.php');
-        </SCRIPT>";
+
     // edit task
     if (isset($_POST['update'])) {
         $id = $_POST['id'];
@@ -50,6 +47,19 @@
                                                info='$info'      
                                                WHERE id=$id");  
         $_SESSION['message'] = "The task is up to date!";
+        header('location: list.php');  
+    }
+
+    // undone task
+    if(isset($_GET['undone'])){
+	    $id = $_GET['undone'];
+        mysqli_query($db, "UPDATE tasks SET task_status = 'Undone' WHERE id=$id");  
+        header('location: list.php');  
+    }
+    // done task
+    if(isset($_GET['done'])){
+	    $id = $_GET['done'];
+        mysqli_query($db, "UPDATE tasks SET task_status = 'Done' WHERE id=$id");  
         header('location: list.php');  
     }
 

@@ -82,12 +82,11 @@
               <td><?php echo $row['priority']; ?></td>
               <td>
                 <?php
-                  // echo $row['task_status']; 
                   if ($row['task_status'] == "Done"){ ?>
-                    <input type="checkbox" id="task_status" name="task_status" checked>
+                    <a href="handle_tasks.php?undone=<?php echo $row['id']; ?>" class="edit_btn fa fa-check"></a>
                   <?php }
                   else{ ?>
-                    <input type="checkbox" id="task_status" name="task_status">
+                    <a href="handle_tasks.php?done=<?php echo $row['id']; ?>" class="del_btn fa fa-times"></a>
                   <?php }
                  ?>
               </td>

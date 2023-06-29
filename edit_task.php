@@ -12,6 +12,7 @@
     if(isset($_GET['edit'])){
 	    $id = $_GET['edit'];
     }
+
 ?>
 <html>
 <head>
