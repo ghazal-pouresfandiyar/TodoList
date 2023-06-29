@@ -91,3 +91,7 @@ form {
   width: 50%;
   text-align: center;
 }
+
+.flex {
+  flex-direction: row;
+}
