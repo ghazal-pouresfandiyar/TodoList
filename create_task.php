@@ -16,13 +16,6 @@
 <head>
     <link rel="stylesheet" href="style.css">
     <title>Create Task</title>
-    
-    <!-- <script>
-         window.onload = function () {
-            const $select = document.querySelector('#genre');
-            $select.value = "<echo $genre; ?>";
-         }
-    </script> -->
 </head>
 
 <body>
