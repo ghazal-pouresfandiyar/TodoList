@@ -32,11 +32,13 @@ form {
 .input-group {
   margin: 10px 0px 10px 0px;
 }
+
 .input-group label {
   display: block;
   text-align: left;
   margin: 3px;
 }
+
 .input-group input {
   height: 30px;
   width: 93%;
@@ -59,24 +61,13 @@ form {
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  /* padding-top: -10px; */
+  padding: 100px;
+  margin: 100px;
 }
 
 .btn:hover {
   color: #ffffff;
   background: none #656b71;
-}
-
-.button {
-  width: 100%;
-  padding: 8px;
-  color: #ffffff;
-  background: none #343a40;
-  border: none;
-  border-radius: 6px;
-  font-size: 18px;
-  cursor: pointer;
-  margin: 12px 0;
 }
 
 .edit_btn {
@@ -107,17 +98,24 @@ form {
 .del_btn:hover {
   color: #d10e0e;
 }
-.msg {
-  margin: 100px auto 25px auto;
-  padding: 10px;
-  border-radius: 5px;
-  color: #3c763d;
-  background: #dff0d8;
-  border: 1px solid #3c763d;
-  width: 50%;
-  text-align: center;
-}
 
 .flex {
   flex-direction: row;
+}
+
+button {
+  /* width: 100%; */
+  padding: 3px;
+  color: #ffffff;
+  background: none #343a40;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 12px;
+}
+
+button:hover {
+  color: #ffffff;
+  background: none #656b71;
 }

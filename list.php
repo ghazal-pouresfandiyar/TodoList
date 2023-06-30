@@ -30,10 +30,10 @@
     <!-- filter box -->
     <form method="post" action="filter.php?user=<?php echo $username; ?>" enctype="multipart/form-data">
       <div class="flex-container">
-        <div style="margin-right:1%">
+        <div class="flex-item">
           <label>Filter:</label>
         </div>
-        <div style="margin-right:1%">
+        <div class="flex-item">
           <select name="search" id="search" style="border-radius: 5px;">
             <option>All tasks</option>
             <?php
@@ -50,16 +50,16 @@
             ?>      
           </select>
         </div>
-        <div style="margin-right:1%">
+        <div class="flex-item">
           <input type="checkbox" id="done" name="done" value="Done">
         </div>
-        <div style="margin-right:1%">
-          <button class="btn" type="submit" name="filter" >Go</button>	
+        <div class="flex-item">
+          <button type="submit" name="filter" >Go</button>	
         </div>
       </div>  
     </form>
 
-    <div class="flex-container">
+    <div class="flexible-container">
       <!-- table -->
       <div style="width: 70%; padding:0; margin:0;">
         <table id="table">
@@ -130,7 +130,7 @@
         </table>
       </div>
       <!-- notif box -->
-      <div style="width: 20%">
+      <div class="notif-box">
         <h2>Alert Messages</h2>
         <p>Click on the "x" symbol to close the alert message.</p>
         <?php
