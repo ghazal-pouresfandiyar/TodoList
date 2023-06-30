@@ -63,7 +63,7 @@
 
     <div class="flexible-container">
       <!-- table -->
-      <div>
+      <div style="flex-grow: 4">
         <table id="table">
           <thead>
             <tr>
@@ -132,7 +132,7 @@
         </table>
       </div>
       <!-- notif box -->
-      <div class="notif-box">
+      <div class="notif-box" style="flex-grow: 1">
         <h2>Alert Messages</h2>
         <p>Click on the "x" symbol to close the alert message.</p>
         <?php
