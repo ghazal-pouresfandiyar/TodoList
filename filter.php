@@ -70,6 +70,7 @@
                       <td><?php echo $row['info']; ?></td>
                     </tr>
                   <?php
+                  $i++;
                   }
                   // subjective done tasks
                   else{
@@ -86,9 +87,9 @@
                         <td><?php echo $row['info']; ?></td>
                       </tr>
                       <?php
+                      $i++;
                     }
                   }
-                  $i++;
                 }
                 // done & undone tasks
                 elseif(!isset($_POST['done'])){ 
@@ -120,9 +121,9 @@
                         <td><?php echo $row['info']; ?></td>
                       </tr>
                       <?php
+                      $i++;
                     }
                   }
-                  $i++;
                 }
               }
             }
