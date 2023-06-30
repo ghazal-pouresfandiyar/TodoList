@@ -45,30 +45,54 @@
       </tr>
       
       <?php
-        if(isset($_GET['subj'])){
-            $subject = $_GET['subj'];
-        
+        if(isset($_POST['filter'])){
+            $subject = $_POST['search'];
+          
             $i = 1;
             if(!$results){
-            die(mysqli_error($con));
+              die(mysqli_error($con));
             }
             if(mysqli_num_rows($results)){
-            while ($row = mysqli_fetch_array($results)) { 
-                if ($row['username'] == $username and $row['task_subject'] == $subject){ ?>
-                <tr>
-                <td><?php echo $i; ?></td>
-                <td><?php echo $row['task_name']; ?></td>
-                <td><?php echo $row['task_subject']; ?></td>
-                <td><?php echo $row['deadline']; ?></td>
-                <td><?php echo $row['priority']; ?></td>
-                <td>
-                <p class="edit_btn fa fa-check"></p>
-                </td>
-                <td><?php echo $row['info']; ?></td>
-                </tr>
-                <?php $i++;
-                }
-            }
+              while ($row = mysqli_fetch_array($results)) { 
+                  if ($row['username'] == $username and $row['task_subject'] == $subject){ 
+                    if (isset($_POST['done'])){
+                      if($row['task_status'] == $_POST['done']) {?>
+                        <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $row['task_name']; ?></td>
+                        <td><?php echo $row['task_subject']; ?></td>
+                        <td><?php echo $row['deadline']; ?></td>
+                        <td><?php echo $row['priority']; ?></td>
+                        <td>
+                        <p class="edit_btn fa fa-check"></p>
+                        </td>
+                        <td><?php echo $row['info']; ?></td>
+                        </tr>
+                      <?php $i++;
+                      }
+                    }else{ ?>
+                      <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $row['task_name']; ?></td>
+                        <td><?php echo $row['task_subject']; ?></td>
+                        <td><?php echo $row['deadline']; ?></td>
+                        <td><?php echo $row['priority']; ?></td>
+                        <td>
+                          <?php
+                            if ($row['task_status'] == "Done"){ ?>
+                              <a href="handle_tasks.php?user=<?php echo $username; ?>&undone=<?php echo $row['id']; ?>" class="edit_btn fa fa-check"></a>
+                            <?php }
+                            else{ ?>
+                              <a href="handle_tasks.php?user=<?php echo $username; ?>&done=<?php echo $row['id']; ?>" class="del_btn fa fa-times"></a>
+                            <?php }
+                          ?>
+                        </td>
+                        <td><?php echo $row['info']; ?></td>
+                        </tr>
+                      <?php
+                    }
+                  }
+              }
             }
         }
       ?>

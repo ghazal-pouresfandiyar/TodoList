@@ -22,7 +22,6 @@
       include_once('connection.php');
       $con = mysqli_connect('localhost', 'root', '', 'todo_db');
       $results = mysqli_query($conn, "SELECT * FROM tasks");
-      $subjects = mysqli_query($conn, "SELECT * FROM subjects");
       date_default_timezone_set("Asia/Tehran");
 
       $username = $_GET['user'];
@@ -32,22 +31,41 @@
       <p><?php echo date('Y-m-d H:i:s') ?></p>
       <a href="filter.php?user=<?php echo $username; ?>&done=1" class="add_btn">Done list</a>
       <br>
-      <?php
-        if(!$subjects){
-          die(mysqli_error($con));
-        }
-        if(mysqli_num_rows($subjects)){
-          while ($row = mysqli_fetch_array($subjects)) { ?>
-            <a href="filter.php?user=<?php echo $username; ?>&subj=<?php echo $row['name'] ?>" class="add_btn">filter <?php echo $row['name'] ?></a>
-            <br>
-          <?php
-          }
-        }
-      ?>
-      
-
+    
     </div>
-
+    <!-- filter box -->
+    <form method="post" action="filter.php?user=<?php echo $username; ?>" enctype="multipart/form-data">
+      <div class="input-group">
+        <div class="flex-container">
+          <div style="margin-right:1%">
+          <label>Filter:</label>
+          </div>
+          <div style="margin-right:1%">
+          <select name="search" id="search" style="border-radius: 5px;">
+            <option disabled selected value> All tasks</option>
+            <?php
+              $subjects = mysqli_query($conn, "SELECT * FROM subjects");
+              if(!$subjects){
+                die(mysqli_error($con));
+              }
+              if(mysqli_num_rows($subjects)){
+                while ($row = mysqli_fetch_array($subjects)) { ?>
+                  <option><?php echo $row['name'] ?></option>
+                <?php
+                }
+              }
+            ?>      
+          </select>
+          </div>
+          <div style="margin-right:1%">
+          <input type="checkbox" id="done" name="done" value="Done">
+          </div>
+          <div style="margin-right:1%">
+          <button class="button" type="submit" name="filter" >filter</button>	
+          </div>
+        </div>
+      </div>
+    </form>
     <div class="flex-container">
       <!-- table -->
       <div style="width: 70%; padding:0; margin:0;">
