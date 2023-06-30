@@ -155,7 +155,8 @@
             die(mysqli_error($con));
           }
           if(mysqli_num_rows($alerts)){
-            while ($row = mysqli_fetch_array($alerts)) { ?>
+            while ($row = mysqli_fetch_array($alerts)) {
+              if($row['username'] == $username){ ?>
               <div class="alert">
                 <!-- <span class=\"closebtn\">&times;</span>" -->
                 <a href="handle_tasks.php?user=<?php echo $username?>&del_note=<?php echo $row['id']?>" class="closebtn fa fa-times"></a>
@@ -164,12 +165,13 @@
                 The deadline is <?php echo $row['deadline']?>
               </div>
               <?php
+              }
             }
           }
           
         ?>
 
-        <script>
+        <!-- <script>
           var close = document.getElementsByClassName("closebtn");
           var i;
 
@@ -180,7 +182,7 @@
               setTimeout(function(){ div.style.display = "none"; }, 600);
             }
           }
-        </script>
+        </script> -->
       </div>
     </div>	
   </body>

@@ -55,7 +55,7 @@
         <div class="input-group">
 			<label style="margin-right: 50px;">Subject</label>
 			<select name="task_subject" id="task_subject" style="border-radius: 5px;">
-            <!-- <option value="" selected disabled> -->
+            <option value="" selected disabled>
             <?php
             $results = mysqli_query($conn, "SELECT * FROM subjects");
             if(!$results){
