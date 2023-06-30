@@ -21,16 +21,14 @@
   <?php 
       include_once('connection.php');
       $con = mysqli_connect('localhost', 'root', '', 'todo_db');
-      $results = mysqli_query($conn, "SELECT * FROM tasks");
+      $results = mysqli_query($con, "SELECT * FROM tasks");
       $username = $_GET['user'];
-      
-
     ?>
 
     <table style="margin-top: 100px;">
       <thead>
         <tr>
-          <th style="font-size: 25px; text-align: left;" colspan="5">Done tasks</th>
+          <th style="font-size: 25px; text-align: left;" colspan="5">Filtered tasks</th>
         </tr>
       </thead>
 
@@ -46,18 +44,38 @@
       
       <?php
         if(isset($_POST['filter'])){
-            $subject = $_POST['search'];
-          
-            $i = 1;
-            if(!$results){
-              die(mysqli_error($con));
-            }
-            if(mysqli_num_rows($results)){
-              while ($row = mysqli_fetch_array($results)) { 
-                  if ($row['username'] == $username and $row['task_subject'] == $subject){ 
-                    if (isset($_POST['done'])){
-                      if($row['task_status'] == $_POST['done']) {?>
-                        <tr>
+          $type = $_POST['search'];
+          if($type != "All tasks"){
+            $subject = $type;
+          }
+          $i = 1;
+          if(!$results){
+            die(mysqli_error($con));
+          }
+          if(mysqli_num_rows($results)){
+            while ($row = mysqli_fetch_array($results)) { 
+              if ($row['username'] == $username){
+                // done tasks
+                if (isset($_POST['done']) and $row['task_status']=="Done"){
+                  // all done tasks
+                  if($type == "All tasks"){ ?>
+                    <tr>
+                      <td><?php echo $i; ?></td>
+                      <td><?php echo $row['task_name']; ?></td>
+                      <td><?php echo $row['task_subject']; ?></td>
+                      <td><?php echo $row['deadline']; ?></td>
+                      <td><?php echo $row['priority']; ?></td>
+                      <td>
+                        <p class="edit_btn fa fa-check"></p>
+                      </td>
+                      <td><?php echo $row['info']; ?></td>
+                    </tr>
+                  <?php
+                  }
+                  // subjective done tasks
+                  else{
+                    if($row['task_subject'] == $subject){ ?>
+                      <tr>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $row['task_name']; ?></td>
                         <td><?php echo $row['task_subject']; ?></td>
@@ -67,10 +85,41 @@
                         <p class="edit_btn fa fa-check"></p>
                         </td>
                         <td><?php echo $row['info']; ?></td>
-                        </tr>
-                      <?php $i++;
-                      }
-                    }else{ ?>
+                      </tr>
+                      <?php
+                    }
+                  }
+                  $i++;
+                }
+                // done & undone tasks
+                elseif(!isset($_POST['done'])){ 
+                  // all done & undone tasks
+                  if($type == "All tasks"){?>
+                    <tr>
+                      <td><?php echo $i; ?></td>
+                      <td><?php echo $row['task_name']; ?></td>
+                      <td><?php echo $row['task_subject']; ?></td>
+                      <td><?php echo $row['deadline']; ?></td>
+                      <td><?php echo $row['priority']; ?></td>
+                      <td>
+                        <?php
+                          if ($row['task_status'] == "Done"){ ?>
+                            <a href="handle_tasks.php?user=<?php echo $username; ?>&undone=<?php echo $row['id']; ?>" class="edit_btn fa fa-check"></a>
+                          <?php
+                          }
+                          else{ ?>
+                            <a href="handle_tasks.php?user=<?php echo $username; ?>&done=<?php echo $row['id']; ?>" class="del_btn fa fa-times"></a>
+                          <?php
+                          }
+                        ?>
+                      </td>
+                      <td><?php echo $row['info']; ?></td>
+                    </tr>
+                  <?php
+                  }
+                   // subjective done & undone tasks
+                  else{
+                    if($row['task_subject'] == $subject){ ?>
                       <tr>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $row['task_name']; ?></td>
@@ -78,52 +127,30 @@
                         <td><?php echo $row['deadline']; ?></td>
                         <td><?php echo $row['priority']; ?></td>
                         <td>
+                        <?php
+                          if ($row['task_status'] == "Done"){ ?>
+                            <a href="handle_tasks.php?user=<?php echo $username; ?>&undone=<?php echo $row['id']; ?>" class="edit_btn fa fa-check"></a>
                           <?php
-                            if ($row['task_status'] == "Done"){ ?>
-                              <a href="handle_tasks.php?user=<?php echo $username; ?>&undone=<?php echo $row['id']; ?>" class="edit_btn fa fa-check"></a>
-                            <?php }
-                            else{ ?>
-                              <a href="handle_tasks.php?user=<?php echo $username; ?>&done=<?php echo $row['id']; ?>" class="del_btn fa fa-times"></a>
-                            <?php }
-                          ?>
-                        </td>
+                          }
+                          else{ ?>
+                            <a href="handle_tasks.php?user=<?php echo $username; ?>&done=<?php echo $row['id']; ?>" class="del_btn fa fa-times"></a>
+                          <?php
+                          }
+                        ?>
+                      </td>
                         <td><?php echo $row['info']; ?></td>
-                        </tr>
+                      </tr>
                       <?php
                     }
                   }
+                  $i++;
+                }
               }
             }
+          }
         }
       ?>
-      <?php
-        if(isset($_GET['done'])){
-            $subject = $_GET['subj'];
-        
-            $i = 1;
-            if(!$results){
-            die(mysqli_error($con));
-            }
-            if(mysqli_num_rows($results)){
-            while ($row = mysqli_fetch_array($results)) { 
-                if ($row['username'] == $username and $row['task_status'] == "Done"){ ?>
-                <tr>
-                <td><?php echo $i; ?></td>
-                <td><?php echo $row['task_name']; ?></td>
-                <td><?php echo $row['task_subject']; ?></td>
-                <td><?php echo $row['deadline']; ?></td>
-                <td><?php echo $row['priority']; ?></td>
-                <td>
-                <p class="edit_btn fa fa-check"></p>
-                </td>
-                <td><?php echo $row['info']; ?></td>
-                </tr>
-                <?php $i++;
-                }
-            }
-            }
-        }
-      ?>
+
     </table>		
   </body>
 </html>

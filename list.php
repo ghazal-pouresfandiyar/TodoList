@@ -38,30 +38,30 @@
       <div class="input-group">
         <div class="flex-container">
           <div style="margin-right:1%">
-          <label>Filter:</label>
+            <label>Filter:</label>
           </div>
           <div style="margin-right:1%">
-          <select name="search" id="search" style="border-radius: 5px;">
-            <option disabled selected value> All tasks</option>
-            <?php
-              $subjects = mysqli_query($conn, "SELECT * FROM subjects");
-              if(!$subjects){
-                die(mysqli_error($con));
-              }
-              if(mysqli_num_rows($subjects)){
-                while ($row = mysqli_fetch_array($subjects)) { ?>
-                  <option><?php echo $row['name'] ?></option>
-                <?php
+            <select name="search" id="search" style="border-radius: 5px;">
+              <option>All tasks</option>
+              <?php
+                $subjects = mysqli_query($conn, "SELECT * FROM subjects");
+                if(!$subjects){
+                  die(mysqli_error($con));
                 }
-              }
-            ?>      
-          </select>
+                if(mysqli_num_rows($subjects)){
+                  while ($row = mysqli_fetch_array($subjects)) { ?>
+                    <option><?php echo $row['name'] ?></option>
+                  <?php
+                  }
+                }
+              ?>      
+            </select>
           </div>
           <div style="margin-right:1%">
-          <input type="checkbox" id="done" name="done" value="Done">
+            <input type="checkbox" id="done" name="done" value="Done">
           </div>
           <div style="margin-right:1%">
-          <button class="button" type="submit" name="filter" >filter</button>	
+            <button class="button" type="submit" name="filter" >filter</button>	
           </div>
         </div>
       </div>
