@@ -102,7 +102,7 @@
 			<textarea type="text" style="width:93%; height: 150px; border-radius: 5px;" name="info" ><?php echo $info; ?></textarea>
 		</div>
 		<div class="input-group">
-	        <input class="btn" type="submit" name="update" value="Update">
+            <button class="btn btn-dark" type="submit" name="update">Update</button>	
         </div>
 	</form>
 </body>

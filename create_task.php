@@ -55,7 +55,7 @@
         <div class="input-group">
 			<label style="margin-right: 50px;">Subject</label>
 			<select name="task_subject" id="task_subject" style="border-radius: 5px;">
-            <option value="" selected disabled>
+            <option></option>
             <?php
             $results = mysqli_query($conn, "SELECT * FROM subjects");
             if(!$results){
@@ -76,7 +76,7 @@
 			<textarea type="text" style="width:93%; height: 150px; border-radius: 5px;" name="info" ><?php echo $info; ?></textarea>
 		</div>
 		<div class="input-group">
-	        <input class="btn" type="submit" name="save" value="Create"></button>	
+            <button class="btn btn-dark" type="submit" name="save">Create</button>	
         </div>
 	</form>
 </body>

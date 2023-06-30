@@ -5,6 +5,7 @@
     $id = 0;
     $username = $_GET['user'];
 	$task_name = "";
+    $task_subject = NULL;
     $deadline = "";
     $reminder = "";
 	$priority = "";
