@@ -76,7 +76,7 @@
 			<textarea type="text" style="width:93%; height: 150px; border-radius: 5px;" name="info" ><?php echo $info; ?></textarea>
 		</div>
 		<div class="input-group">
-	        <button type="submit" name="save" >Create</button>	
+	        <input class="btn" type="submit" name="save" value="Create"></button>	
         </div>
 	</form>
 </body>

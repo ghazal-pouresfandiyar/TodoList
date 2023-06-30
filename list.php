@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./bootstrap-5.1.3-dist/css/bootstrap.css" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="list.css" />
     
     <?php
       include('navbar.php');
@@ -28,7 +27,7 @@
     ?>
 
     <!-- filter box -->
-    <form method="post" action="filter.php?user=<?php echo $username; ?>" enctype="multipart/form-data">
+    <form method="post" action="filter.php?user=<?php echo $username; ?>" enctype="multipart/form-data" class="filter">
       <div class="flex-container">
         <div class="flex-item">
           <label>Filter:</label>
@@ -54,7 +53,7 @@
           <input type="checkbox" id="done" name="done" value="Done">
         </div>
         <div class="flex-item">
-          <button type="submit" name="filter" >Go</button>	
+          <input class="btn" type="submit" name="filter" value="Go">	
         </div>
       </div>  
     </form>
