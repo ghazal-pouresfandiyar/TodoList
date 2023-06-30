@@ -94,28 +94,8 @@
                 // done & undone tasks
                 elseif(!isset($_POST['done'])){ 
                   // all done & undone tasks
-                  if($type == "All tasks"){?>
-                    <tr>
-                      <td><?php echo $i; ?></td>
-                      <td><?php echo $row['task_name']; ?></td>
-                      <td><?php echo $row['task_subject']; ?></td>
-                      <td><?php echo $row['deadline']; ?></td>
-                      <td><?php echo $row['priority']; ?></td>
-                      <td>
-                        <?php
-                          if ($row['task_status'] == "Done"){ ?>
-                            <a href="handle_tasks.php?user=<?php echo $username; ?>&undone=<?php echo $row['id']; ?>" class="edit_btn fa fa-check"></a>
-                          <?php
-                          }
-                          else{ ?>
-                            <a href="handle_tasks.php?user=<?php echo $username; ?>&done=<?php echo $row['id']; ?>" class="del_btn fa fa-times"></a>
-                          <?php
-                          }
-                        ?>
-                      </td>
-                      <td><?php echo $row['info']; ?></td>
-                    </tr>
-                  <?php
+                  if($type == "All tasks"){
+                    header('location: list.php?user='.$username); 
                   }
                    // subjective done & undone tasks
                   else{

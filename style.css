@@ -45,13 +45,26 @@ form {
   border-radius: 5px;
   border: 1px solid gray;
 }
+
+.select {
+  font-size: 18px;
+  border-radius: 6px;
+  /* height: 100%; */
+}
+
 .btn {
-  padding: 1px;
-  font-size: 15px;
-  color: #22cee8;
-  border: 2px solid #22cee8;
-  border-radius: 5px;
-  background-color: white;
+  font-size: 18px;
+  color: #ffffff;
+  background: none #343a40;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  /* padding-top: -10px; */
+}
+
+.btn:hover {
+  color: #ffffff;
+  background: none #656b71;
 }
 
 .button {

@@ -22,57 +22,50 @@
       include_once('connection.php');
       $con = mysqli_connect('localhost', 'root', '', 'todo_db');
       $results = mysqli_query($conn, "SELECT * FROM tasks");
-      date_default_timezone_set("Asia/Tehran");
+      // date_default_timezone_set("Asia/Tehran");
 
       $username = $_GET['user'];
-      
     ?>
-    <div style="margin-top: 80px;">
-      <p><?php echo date('Y-m-d H:i:s') ?></p>
-      <a href="filter.php?user=<?php echo $username; ?>&done=1" class="add_btn">Done list</a>
-      <br>
-    
-    </div>
+
     <!-- filter box -->
     <form method="post" action="filter.php?user=<?php echo $username; ?>" enctype="multipart/form-data">
-      <div class="input-group">
-        <div class="flex-container">
-          <div style="margin-right:1%">
-            <label>Filter:</label>
-          </div>
-          <div style="margin-right:1%">
-            <select name="search" id="search" style="border-radius: 5px;">
-              <option>All tasks</option>
-              <?php
-                $subjects = mysqli_query($conn, "SELECT * FROM subjects");
-                if(!$subjects){
-                  die(mysqli_error($con));
-                }
-                if(mysqli_num_rows($subjects)){
-                  while ($row = mysqli_fetch_array($subjects)) { ?>
-                    <option><?php echo $row['name'] ?></option>
-                  <?php
-                  }
-                }
-              ?>      
-            </select>
-          </div>
-          <div style="margin-right:1%">
-            <input type="checkbox" id="done" name="done" value="Done">
-          </div>
-          <div style="margin-right:1%">
-            <button class="button" type="submit" name="filter" >filter</button>	
-          </div>
+      <div class="flex-container">
+        <div style="margin-right:1%">
+          <label>Filter:</label>
         </div>
-      </div>
+        <div style="margin-right:1%">
+          <select name="search" id="search" style="border-radius: 5px;">
+            <option>All tasks</option>
+            <?php
+              $subjects = mysqli_query($conn, "SELECT * FROM subjects");
+              if(!$subjects){
+                die(mysqli_error($con));
+              }
+              if(mysqli_num_rows($subjects)){
+                while ($row = mysqli_fetch_array($subjects)) { ?>
+                  <option><?php echo $row['name'] ?></option>
+                <?php
+                }
+              }
+            ?>      
+          </select>
+        </div>
+        <div style="margin-right:1%">
+          <input type="checkbox" id="done" name="done" value="Done">
+        </div>
+        <div style="margin-right:1%">
+          <button class="btn" type="submit" name="filter" >Go</button>	
+        </div>
+      </div>  
     </form>
+
     <div class="flex-container">
       <!-- table -->
       <div style="width: 70%; padding:0; margin:0;">
-        <table>
+        <table id="table">
           <thead>
             <tr>
-              <th style="font-size: 25px; text-align: left;" colspan="5">My tasks</th>
+              <th style="font-size: 25px; text-align: left;" colspan="8">All tasks</th>
               <th><a href="create_task.php?user=<?php echo $username; ?>" class="add_btn">+Add new task</a></th>
             </tr>
           </thead>
@@ -81,9 +74,15 @@
             <th>#</th>
             <th>Task name</th>
             <th>Subject</th>
-            <th>Deadline</th>
+            <th>Deadline
+              <a class='fa fa-caret-up' onclick="sort(3,true)"></a>
+              <a class='fa fa-caret-down' onclick="sort(3, false)"></a>
+            </th>
             <th>Reminder</th>
-            <th>Priority</th>
+            <th>Priority
+              <a class='fa fa-caret-up' onclick="sort(5,true)"></a>
+              <a class='fa fa-caret-down' onclick="sort(5, false)"></a>
+            </th>
             <th>Status</th>
             <th>Info</th>
             <th colspan="2">Options</th>
@@ -185,4 +184,59 @@
       </div>
     </div>	
   </body>
+
+
+  <script>
+    function sort(n, decreasing){
+      var table, rows, switching, i, x, y, shouldSwitch;
+      table = document.getElementById("table");
+      switching = true;
+      while(switching){
+        switching = false;
+        rows = table.rows;
+        for (i=2; i < (rows.length-1); i++){
+          shouldSwitch = false;
+          x = rows[i].getElementsByTagName("TD")[n].innerHTML;
+          y = rows[i + 1].getElementsByTagName("TD")[n].innerHTML;
+          // sort Priority
+          if(n==5){
+            x = priorityToInt(x);
+            y = priorityToInt(y);
+          }
+          if(decreasing){
+            if(x<y){
+              shouldSwitch = true;
+              break;
+            }
+          }else{
+            if(x>y){
+              shouldSwitch = true;
+              break;
+            }
+          }
+        }
+        if(shouldSwitch){
+          // # of rows
+          var pr = rows[i].getElementsByTagName("TD")[0].innerText;
+          var ne = rows[i+1].getElementsByTagName("TD")[0].innerText;
+          rows[i].getElementsByTagName("TD")[0].innerText=ne;
+          rows[i+1].getElementsByTagName("TD")[0].innerText=pr;
+          // change rows
+          rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
+          switching = true;
+        }
+      }
+    }
+
+
+    function priorityToInt(priority){
+      if (priority == "High"){
+        return 2;
+      }else if(priority == "Medium"){
+        return 1;
+      }else if(priority == "Low"){
+        return 0;
+      }
+    }
+  </script>
 </html>
