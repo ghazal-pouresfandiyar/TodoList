@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2023 at 10:04 PM
+-- Generation Time: Jul 01, 2023 at 01:14 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -65,14 +65,14 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `username`, `task_name`, `task_subject`, `deadline`, `reminder`, `alert`, `priority`, `task_status`, `info`) VALUES
-(20, 'ghazal', 'task1-gh', 'Studying', '2023-06-29 19:43:21', '0000-00-00 00:00:00', '', 'High', 'Done', ''),
 (21, 'sara', 'sara-task', NULL, '2023-06-29 19:43:55', '0000-00-00 00:00:00', 'Deactive', 'Medium', 'Undone', ''),
 (24, 'sara', 'correct', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0', 'Low', 'Done', ''),
-(26, 'ghazal', 'ghaz', 'English', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Deactive', 'Low', 'Undone', ''),
+(26, 'ghazal', 'ghaz', 'English', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Deactive', 'Low', 'Done', ''),
 (27, 'ghazal', 'test', 'Programming', '2023-07-06 14:04:00', '2023-07-01 00:32:00', 'Deactive', 'High', 'Undone', ''),
-(28, 'ghazal', 'test2', 'Exercising', '2023-07-07 04:54:00', '2023-07-01 00:31:00', 'Deactive', 'Medium', 'Done', ''),
 (30, 'ghazal', 'new', 'English', '2023-07-06 01:57:00', '2023-06-30 03:54:00', 'Active', 'Medium', 'Undone', 'test info'),
-(32, 'admin', 'test', 'Exercising', '2023-07-06 23:26:00', '2023-06-30 23:28:00', 'Active', 'Low', 'Undone', '');
+(32, 'admin', 'test', 'Exercising', '2023-07-06 23:26:00', '2023-06-30 23:28:00', 'Active', 'Low', 'Undone', ''),
+(36, 'ghazal', 'mobina', 'Exercising', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Deactive', 'Low', 'Done', ''),
+(47, 'ghazal', 'j', 'Exercising', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Active', 'Low', 'Undone', '');
 
 -- --------------------------------------------------------
 
@@ -127,7 +127,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- Constraints for dumped tables
