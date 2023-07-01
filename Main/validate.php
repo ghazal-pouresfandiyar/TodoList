@@ -24,16 +24,11 @@ if (isset($_POST['login'])) {
         else{  
             echo "<SCRIPT>
                     alert('Wrong information!')
-                    window.location.replace('http://localhost/Todolist/login.php');
+                    window.location.replace('http://localhost/Todolist/Main/login.php');
                     </SCRIPT>";
                     die();
         }     
     }
-}
-
-else
-{
-    header("location: home.php");
 }
  
 ?>

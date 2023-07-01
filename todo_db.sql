@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2023 at 01:14 AM
+-- Generation Time: Jul 01, 2023 at 11:25 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -67,12 +67,12 @@ CREATE TABLE `tasks` (
 INSERT INTO `tasks` (`id`, `username`, `task_name`, `task_subject`, `deadline`, `reminder`, `alert`, `priority`, `task_status`, `info`) VALUES
 (21, 'sara', 'sara-task', NULL, '2023-06-29 19:43:55', '0000-00-00 00:00:00', 'Deactive', 'Medium', 'Undone', ''),
 (24, 'sara', 'correct', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0', 'Low', 'Done', ''),
-(26, 'ghazal', 'ghaz', 'English', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Deactive', 'Low', 'Done', ''),
-(27, 'ghazal', 'test', 'Programming', '2023-07-06 14:04:00', '2023-07-01 00:32:00', 'Deactive', 'High', 'Undone', ''),
-(30, 'ghazal', 'new', 'English', '2023-07-06 01:57:00', '2023-06-30 03:54:00', 'Active', 'Medium', 'Undone', 'test info'),
+(26, 'ghazal', 'ghaz', 'Exercising', '2023-07-13 01:06:00', '0000-00-00 00:00:00', '', 'Low', 'Done', 't'),
+(30, 'ghazal', 'new', 'English', '2023-07-06 01:57:00', '2023-06-30 03:54:00', 'Deactive', 'Medium', 'Done', 'test info'),
 (32, 'admin', 'test', 'Exercising', '2023-07-06 23:26:00', '2023-06-30 23:28:00', 'Active', 'Low', 'Undone', ''),
 (36, 'ghazal', 'mobina', 'Exercising', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Deactive', 'Low', 'Done', ''),
-(47, 'ghazal', 'j', 'Exercising', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Active', 'Low', 'Undone', '');
+(50, 'test', 'correct', 'Exercising', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Active', 'Low', 'Undone', 'test'),
+(51, 'ghazal', 'correct', 'Exercising', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Deactive', 'Low', 'Undone', '');
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,10 @@ INSERT INTO `users` (`username`, `password`) VALUES
 ('admin', '123'),
 ('admin@admin.com', 'admin'),
 ('ghazal', 'Ghazal'),
-('sara', '123');
+('man', '3'),
+('sara', '123'),
+('t', '123'),
+('test', '123');
 
 --
 -- Indexes for dumped tables
@@ -127,7 +130,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- Constraints for dumped tables
